@@ -9,6 +9,7 @@ public class PelletFloating : MonoBehaviour
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _amplitude = 0.5f;
     
+    
 
 
     // Start is called before the first frame update
