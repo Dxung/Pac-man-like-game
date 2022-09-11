@@ -30,6 +30,7 @@ public class WallGenerating : MonoBehaviour
     // If the tile at that position is painted, Create the wallpreference at that space.
         foreach(Vector3Int position in _myTileMap.cellBounds.allPositionsWithin)
         {
+            Debug.Log("bat dau tao tuong ne");
             if(_myTileMap.GetTile(position) == _blank)
             {
              
@@ -51,6 +52,7 @@ public class WallGenerating : MonoBehaviour
             }
             
         }
+        Debug.Log("Tao xong roi ne");
     }
 
 

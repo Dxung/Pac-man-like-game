@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: c5b855f9eaa85cb4587d5e8b5f99e0a9, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 1007432299}
   - component: {fileID: 1007432298}
   - component: {fileID: 1007432297}
+  - component: {fileID: 1007432302}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -485,6 +486,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1007432302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007432296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 255
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.14666666
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1 &1077973570
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +550,52 @@ Transform:
   - {fileID: 7336213891752883408}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1486643308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486643310}
+  - component: {fileID: 1486643309}
+  m_Layer: 0
+  m_Name: NavMesh Baker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486643309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486643308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fec5d637afad7b4a968989364b62a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaces:
+  - {fileID: 1007432302}
+--- !u!4 &1486643310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486643308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610390801
 GameObject:
@@ -6474,7 +6551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8698125166233540282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost.obj.cleaner.materialmerger.gles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6526,7 +6603,7 @@ GameObject:
   - component: {fileID: 2099151865668907889}
   - component: {fileID: 6160077329975010050}
   - component: {fileID: 3435969005571243505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6610,7 +6687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595790672020155160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6662,7 +6739,7 @@ GameObject:
   - component: {fileID: 4153128271609938035}
   - component: {fileID: 9048290008964822796}
   - component: {fileID: 7090750844535037665}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6850,7 +6927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5832575602984322140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sketchfab_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7460,7 +7537,7 @@ GameObject:
   - component: {fileID: 1572350189543850489}
   - component: {fileID: 6261737129213464216}
   - component: {fileID: 2839784544763475447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7728,7 +7805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6625901911513495945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,7 +7821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6625901911941377626
 GameObject:
   m_ObjectHideFlags: 0
@@ -7755,7 +7832,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7336213891853332572}
   - component: {fileID: 7336213891853332573}
-  m_Layer: 0
+  - component: {fileID: 7336213891853332574}
+  m_Layer: 8
   m_Name: Blinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7777,7 +7855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6956088095944887894
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,7 +7903,7 @@ GameObject:
   - component: {fileID: 2779566630219148207}
   - component: {fileID: 4396148978199832268}
   - component: {fileID: 185570032749422029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8091,19 +8169,36 @@ NavMeshAgent:
   m_GameObject: {fileID: 6625901911941377626}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.44
   m_Speed: 2
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.04
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
+--- !u!114 &7336213891853332574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625901911941377626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d611e8f9dc9cfd4e8e92447cc0424b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinky: 1
+  pinky: 0
+  inky: 0
+  clyde: 0
+  _playerTransform: {fileID: 643541155}
 --- !u!4 &8698125166133056054
 Transform:
   m_ObjectHideFlags: 0
@@ -8245,7 +8340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3815897206190490266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
