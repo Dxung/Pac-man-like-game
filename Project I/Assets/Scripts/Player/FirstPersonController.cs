@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
 
+
     public bool _canMove { get; private set; } = true;
 
     [Header("Movement Parameters")]

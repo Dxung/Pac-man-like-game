@@ -15,12 +15,17 @@ public class GhostMoving : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
                      private NavMeshAgent _agent;
 
+    [Header("Inky References")]
+    [SerializeField] private GameObject _otherGhosts;
+                     private Vector3 _pos;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
          _agent = this.GetComponent<NavMeshAgent>();
-        Debug.Log(_agent);
+        
         
     }
 
@@ -35,7 +40,7 @@ public class GhostMoving : MonoBehaviour
     {
         if (blinky)
         {
-            Debug.Log(_playerTransform);
+            
             _agent.SetDestination(_playerTransform.position);
         }
         if (pinky)
@@ -44,11 +49,12 @@ public class GhostMoving : MonoBehaviour
         }
         if (inky)
         {
-
+            _pos = transform.position + (_playerTransform.position - _otherGhosts.transform.position) * 1.5f;
+            _agent.SetDestination(_pos);
         }
         if (clyde)
         {
-
+            
         }
     }
 

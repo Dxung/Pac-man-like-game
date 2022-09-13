@@ -14,10 +14,10 @@ public class NavigationBaker : MonoBehaviour
 
         for (int i = 0; i < surfaces.Length; i++)
         {
-            Debug.Log("bake ne`");
+            
             surfaces[i].BuildNavMesh();
         }
-        Debug.Log("bake xong");
+        
     }
 
 
