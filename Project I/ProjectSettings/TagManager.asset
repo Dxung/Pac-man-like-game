@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pellet
+  - Ghosts
+  - Blinky
+  - Pinky
+  - Inky
+  - Clyde
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,6 @@ public class PelletColliderController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(this.transform.parent.gameObject);
 
         _pelletParticleSystem = this.transform.parent.GetComponentInChildren<ParticleSystem>();
         _pelletMesh = this.transform.parent.GetComponent<MeshRenderer>();
@@ -24,13 +23,13 @@ public class PelletColliderController : MonoBehaviour
         _pelletLight = this.transform.parent.GetComponentInChildren<Light>();
 
         //get the time that particle system complete all circle
-        _particleSystemDuration = _pelletParticleSystem.duration + _pelletParticleSystem.startLifetime;
+        _particleSystemDuration = _pelletParticleSystem.main.duration + _pelletParticleSystem.main.startLifetime.constant;
+
 
     }
     //this script will work when pellets be touched by player
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("da cham");
         if (other.gameObject.CompareTag("Player"))
         {
             //turn off mesh, so you will not see the pellet remains on screen when particles come out
