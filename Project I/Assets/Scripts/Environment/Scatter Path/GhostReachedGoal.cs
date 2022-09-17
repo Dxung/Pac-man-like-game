@@ -13,24 +13,20 @@ public class TriggerForGhostGoal : MonoBehaviour
     {
  
         //get the component of the ghost touching the trigger
-        GeneralGhostMoving ghostScript = other.gameObject.GetComponent<GeneralGhostMoving>();
+        GhostMovementController ghostController = other.gameObject.GetComponent<GhostMovementController>();
 
         //check if this point is the current goal point
-        if (this.transform.position == ghostScript.GetCurrentGoal())
+        if (ghostController.CompareCurrentGoal(this.transform.position)) 
         {
 
-            Debug.Log(this.transform.position == ghostScript.GetCurrentGoal());
-
             //only change goal when ghost in scatter mode
-            if (ghostScript.GetGhostState() == GhostState.scatter)
+            if (ghostController.CompareCurrentState(GhostState.scatter))
             {
                 
-                GhostName nameOfGhostThatTouch = ghostScript.GetGhostName();
-
-                //check if this ghost  has the same "Ghost Name" with the one set for this point
-                if (nameOfGhostThatTouch == _triggerForWhichGhost)
+             //check if this ghost  has the same "Ghost Name" with the one set for this point
+                if (ghostController.CompareGhostName(_triggerForWhichGhost))
                 {
-                    ghostScript.ChangeGoal();
+                    ghostController.ChangeScatterGoal();
                 }
             }
         }

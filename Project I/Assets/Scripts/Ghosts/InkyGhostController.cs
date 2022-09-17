@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InkyGhostMoving : GeneralGhostMoving
+public class InkyGhostController : GhostMovementController
 {
 
     [Header("Inky References")]
@@ -12,7 +12,7 @@ public class InkyGhostMoving : GeneralGhostMoving
     protected override void ChasePlayer()
     {
         base.ChasePlayer();
-        if (this._ghostName == GhostName.inky)
+        if (_ghostData.CompareGhostName(GhostName.inky))
         {
             _pos = transform.position + (_playerTransform.position - _otherGhosts.transform.position) * 1.5f;
             _agent.SetDestination(_pos);
