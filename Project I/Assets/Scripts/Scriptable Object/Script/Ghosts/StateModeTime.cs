@@ -5,13 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ghost State Timer", menuName = "My Game/ Ghost State Timer")]
 public class StateModeTime : ScriptableObject
 {
-    [SerializeField] private int _scatterModeTime1;
-    [SerializeField] private int _chaseModeTime1;
-    [SerializeField] private int _scatterModeTime2;
-    [SerializeField] private int _chaseModeTime2;
-    [SerializeField] private int _scatterModeTime3;
-    [SerializeField] private int _chaseModeTime3;
-    [SerializeField] private int _scatterModeTime4;
 
     [SerializeField] private int _frightenedModeTime;
 

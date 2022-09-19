@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Clyde
   m_EditorClassIdentifier: 
   _ghostName: 3
-  _scatterPath: []
-  _currentGhostState: 0
-  _previousGhostState: 0
+  _spawnPosition: {x: -4, y: 0, z: 11}
+  _scatterPath:
+  - {x: -10.5, y: 0, z: -0.5}
+  - {x: -15.5, y: 0, z: -0.5}
+  - {x: -15.5, y: 0, z: 2.5}
+  - {x: -18.5, y: 0, z: 2.5}
+  - {x: -18.5, y: 0, z: -3.5}
+  - {x: -10.5, y: 0, z: -3.5}

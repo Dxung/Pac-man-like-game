@@ -13,20 +13,21 @@ public class TriggerForGhostGoal : MonoBehaviour
     {
  
         //get the component of the ghost touching the trigger
-        GhostMovementController ghostController = other.gameObject.GetComponent<GhostMovementController>();
+        Blinky_Pinky_ClydeMovementController ghostMovementController = other.gameObject.GetComponent<Blinky_Pinky_ClydeMovementController>();
+        Blinky_Pinky_Inky_StateController ghostStateController = other.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
 
         //check if this point is the current goal point
-        if (ghostController.CompareCurrentGoal(this.transform.position)) 
+        if (ghostMovementController.CompareCurrentGoal(this.transform.position)) 
         {
 
             //only change goal when ghost in scatter mode
-            if (ghostController.CompareCurrentState(GhostState.scatter))
+            if (ghostStateController.CheckCurrentState(GhostState.scatter))
             {
                 
              //check if this ghost  has the same "Ghost Name" with the one set for this point
-                if (ghostController.CompareGhostName(_triggerForWhichGhost))
+                if (ghostMovementController.IsItThisGhost(_triggerForWhichGhost))
                 {
-                    ghostController.ChangeScatterGoal();
+                    ghostMovementController.ChangeGoal();
                 }
             }
         }

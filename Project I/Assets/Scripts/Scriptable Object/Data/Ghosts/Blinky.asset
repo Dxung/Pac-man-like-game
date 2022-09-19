@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Blinky
   m_EditorClassIdentifier: 
   _ghostName: 0
-  _scatterPath: []
-  _currentGhostState: 1
-  _previousGhostState: 1
+  _spawnPosition: {x: -6, y: 0, z: 13}
+  _scatterPath:
+  - {x: 1.5, y: 0, z: 22.5}
+  - {x: 6.5, y: 0, z: 22.5}
+  - {x: 6.5, y: 0, z: 19.5}
+  - {x: 1.5, y: 0, z: 19.5}

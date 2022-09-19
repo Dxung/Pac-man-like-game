@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Pinky
   m_EditorClassIdentifier: 
   _ghostName: 1
-  _scatterPath: []
-  _currentGhostState: 0
-  _previousGhostState: 0
+  _spawnPosition: {x: -8, y: 0, z: 11}
+  _scatterPath:
+  - {x: -13.5, y: 0, z: 22.5}
+  - {x: -18.5, y: 0, z: 22.5}
+  - {x: -18.5, y: 0, z: 19.5}
+  - {x: -13.5, y: 0, z: 19.5}

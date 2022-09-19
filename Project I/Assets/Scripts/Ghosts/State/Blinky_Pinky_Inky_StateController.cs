@@ -11,7 +11,7 @@ public enum GhostState
 }
 
 //this script contains methods that control the state system of all ghost
-public class GhostStateController : MonoBehaviour
+public class Blinky_Pinky_Inky_StateController : MonoBehaviour
 {
     [Header("Ghost State")]
     [SerializeField] private GhostState _currentGhostState;
@@ -27,14 +27,37 @@ public class GhostStateController : MonoBehaviour
     [Header("References")]
     [SerializeField] private StateModeTime _stateModeTime;
 
+    //Debug Only
+    [SerializeField] private bool _check;
+    [SerializeField] private bool _checked;
+
+
+    private void Debug()
+    {
+        if (_check)
+        {
+            if (!_checked)
+            {
+                _checked = true;
+                Check();
+            }
+        }
+    }
 
     private void Update()
     {
+
+        Debug();
         UpdateGhostState();
     }
 
 
-    /// ~~TRIGGER CHANGING STATE~~
+    private void Check()
+    {
+        TurnToFrightenedState();
+    }
+
+                                                        /// ~~TRIGGER CHANGING STATE~~
 
     //Used when change ghost state to FrightenedMode
     //Pause Timer
@@ -60,9 +83,9 @@ public class GhostStateController : MonoBehaviour
     }
 
 
-    /// ~~UPDATING STATE EVERY FRAME~~
+                                                        /// ~~UPDATING STATE EVERY FRAME~~
 
-    private void UpdateGhostState()
+    protected virtual void UpdateGhostState()
     {
         if (CheckCurrentState(GhostState.scatter))
         {
@@ -119,7 +142,7 @@ public class GhostStateController : MonoBehaviour
     //check if time for frighten mode is over?
     //no? : continue counting down
     //yes? : switch back to previous state and timer
-    private void UpdateFrightenedMode()
+    protected void UpdateFrightenedMode()
     {
         if (IsTimeOut(_stateModeTime.GetFrightenedModeTime()))
         {
@@ -135,7 +158,7 @@ public class GhostStateController : MonoBehaviour
 
 
 
-    /// ~~Pause/Resume previous state~~
+                                                        /// ~~PAUSE/RESUME PREVIOUS STAGE~~
 
     //Used when ghost state change to frightened mode/eaten mode
     //save current Timer
@@ -160,12 +183,12 @@ public class GhostStateController : MonoBehaviour
  
                                                         /// ~~GETTER AND SETTER~~
 
-    private void ChangeGhostState(GhostState ghostStateToChangeTo)
+    protected void ChangeGhostState(GhostState ghostStateToChangeTo)
     {
         _currentGhostState = ghostStateToChangeTo;
     }
 
-    private bool CheckCurrentState(GhostState ghostStateToCheck)
+    public bool CheckCurrentState(GhostState ghostStateToCheck)
     {
         return _currentGhostState == ghostStateToCheck;
     }
@@ -204,7 +227,7 @@ public class GhostStateController : MonoBehaviour
     //used every frame in a duration of a mode
     private void TimeRun()
     {
-        _currentTimer++;
+        _currentTimer += Time.deltaTime;
     }
 
 }
