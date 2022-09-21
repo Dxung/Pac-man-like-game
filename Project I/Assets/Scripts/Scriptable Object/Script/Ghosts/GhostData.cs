@@ -31,7 +31,7 @@ public class GhostData : ScriptableObject
         return GetGhostName() == ghostNameToCompare;
     }
 
-    private GhostName GetGhostName()
+    public GhostName GetGhostName()
     {
         return this._ghostName;
     }
@@ -59,14 +59,14 @@ public class GhostData : ScriptableObject
     {
         _scatterPath.Clear();
         foreach(GameObject scatterPoint in prefabScatterPoint)
-        {
-            
+        {           
             _scatterPath.Add(scatterPoint.transform.position);
             
         }
 
     }
-
-
-
+    public void AddSpawnPoint(GameObject prefabSpawnPoint)
+    {
+        _spawnPosition = prefabSpawnPoint.transform.position;
+    }
 }

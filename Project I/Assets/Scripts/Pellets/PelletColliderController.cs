@@ -5,17 +5,26 @@ using UnityEngine;
 public class PelletColliderController : MonoBehaviour
 {
     [Header("Pellet Particle System")]
-    private ParticleSystem _pelletParticleSystem;
-    private float _particleSystemDuration;
+    protected ParticleSystem _pelletParticleSystem;
+    protected float _particleSystemDuration;
 
     [Header("other references to use when particle effect happens")]
-    private Collider _pelletTrigger;
-    private MeshRenderer _pelletMesh;
-    private Light _pelletLight;
+    protected Collider _pelletTrigger;
+    protected MeshRenderer _pelletMesh;
+    protected Light _pelletLight;
+
+    [Header("State Controller")]
+    [SerializeField] protected StateForPellets _StateControllerForPellet;
 
 
-    private void Awake()
+    private void Start()
     {
+        Debug.Log(_StateControllerForPellet);
+    }
+
+    protected void Awake()
+    {
+        AddStateForPelletFunction();
 
         _pelletParticleSystem = this.transform.parent.GetComponentInChildren<ParticleSystem>();
         _pelletMesh = this.transform.parent.GetComponent<MeshRenderer>();
@@ -28,26 +37,50 @@ public class PelletColliderController : MonoBehaviour
 
     }
     //this script will work when pellets be touched by player
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //turn off mesh, so you will not see the pellet remains on screen when particles come out
-            _pelletMesh.enabled = false;
+            //change player state
+            ChangeplayerState();
 
-            //turn off light
-            _pelletLight.enabled = false;
+            ChangePelletStatus();
 
-            //turn off trigger collider
-            _pelletTrigger.enabled = false;
 
-            //play particle effect
-            _pelletParticleSystem.Play();
-
-            Destroy(this.transform.parent.gameObject, _particleSystemDuration);
-
-            
-            
         }
+    }
+
+    //change player state to consume (if not in powerup)
+    protected virtual void ChangeplayerState()
+    {
+        Debug.Log(_StateControllerForPellet.GetPlayerStateController());
+        PlayerStateController playerStateControl = _StateControllerForPellet.GetPlayerStateController();
+        playerStateControl.TurnToConsumeState();
+    }
+
+    protected void AddStateForPelletFunction()
+    {
+        GameObject StateControllerForPellet = GameObject.Find("State for pellets");
+        _StateControllerForPellet = StateControllerForPellet.GetComponent<StateForPellets>();
+    }
+
+    //use when pellet be collided
+    protected void ChangePelletStatus()
+    {
+        //turn off mesh, so you will not see the pellet remains on screen when particles come out
+        _pelletMesh.enabled = false;
+
+        //turn off light
+        _pelletLight.enabled = false;
+
+        //turn off trigger collider
+        _pelletTrigger.enabled = false;
+
+
+
+        //play particle effect
+        _pelletParticleSystem.Play();
+
+        Destroy(this.transform.parent.gameObject, _particleSystemDuration);
     }
 }

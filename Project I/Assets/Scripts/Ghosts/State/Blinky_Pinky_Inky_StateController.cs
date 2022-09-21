@@ -27,35 +27,20 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     [Header("References")]
     [SerializeField] private StateModeTime _stateModeTime;
 
-    //Debug Only
-    [SerializeField] private bool _check;
-    [SerializeField] private bool _checked;
-
-
-    private void Debug()
+    protected void Awake()
     {
-        if (_check)
-        {
-            if (!_checked)
-            {
-                _checked = true;
-                Check();
-            }
-        }
+        ChangeGhostState(GhostState.scatter);
     }
 
-    private void Update()
+    protected void Update()
     {
 
-        Debug();
+        Debugger();
         UpdateGhostState();
     }
 
 
-    private void Check()
-    {
-        TurnToFrightenedState();
-    }
+   
 
                                                         /// ~~TRIGGER CHANGING STATE~~
 
@@ -63,18 +48,25 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     //Pause Timer
     //reset timer to 0
     //Change State to Frightened
+    //cannot change while in eaten state
     public void TurnToFrightenedState()
     {
-        PauseGhostStatus();
-        ResetTimer();
-        ChangeGhostState(GhostState.frightened);
+        if (!CheckCurrentState(GhostState.eaten))
+        {
+            PauseGhostStatus();
+            ResetTimer();
+            ChangeGhostState(GhostState.frightened);
+        }
     }
 
     //Used when change ghost state to EatenMode
     //Change State to Eaten
     public void TurnToEatenState()
     {
-        ChangeGhostState(GhostState.eaten);
+        if (CheckCurrentState(GhostState.frightened))
+        {
+            ChangeGhostState(GhostState.eaten);
+        }
     }
 
     public void FinishEatenState()
@@ -93,14 +85,14 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         }
 
         //after iteration go to 4, ghost will be in chase for the rest of the game (not counting frightened/eaten)
-        if (CheckCurrentState(GhostState.chase))
+        else if (CheckCurrentState(GhostState.chase))
         {
             if (_modeSwitchIteration == 1 || _modeSwitchIteration == 2 || _modeSwitchIteration == 3)
             {
                 UpdateChaseMode();
             }
         }
-        if (CheckCurrentState(GhostState.frightened))
+        else if (CheckCurrentState(GhostState.frightened))
         {
             UpdateFrightenedMode();
         }
@@ -144,7 +136,7 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     //yes? : switch back to previous state and timer
     protected void UpdateFrightenedMode()
     {
-        if (IsTimeOut(_stateModeTime.GetFrightenedModeTime()))
+        if (IsTimeOut(_stateModeTime.GetFrightenedPowerUpTime()))
         {
             ResumeGhostStatus();
             
@@ -163,10 +155,16 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     //Used when ghost state change to frightened mode/eaten mode
     //save current Timer
     //save current ghost state
+    //do not save frighten/eaten status & timer
     private void PauseGhostStatus()
     {
-        _previousTimer = _currentTimer;
-        _previousGhostState = _currentGhostState;
+        
+        if (!CheckCurrentState(GhostState.frightened) && !CheckCurrentState(GhostState.eaten))
+        {
+            CheckCurrentState(GhostState.frightened);
+            _previousTimer = _currentTimer;
+            _previousGhostState = _currentGhostState;
+        }
     }
 
     //Used when ghost state finish its frightened mode/ eaten mode
@@ -228,6 +226,27 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     private void TimeRun()
     {
         _currentTimer += Time.deltaTime;
+    }
+
+    /// Debug Only
+    [SerializeField] private bool _check;
+    [SerializeField] private bool _checked;
+
+
+    private void Debugger()
+    {
+        if (_check)
+        {
+            if (!_checked)
+            {
+                _checked = true;
+                Check();
+            }
+        }
+    }
+    private void Check()
+    {
+        TurnToFrightenedState();
     }
 
 }

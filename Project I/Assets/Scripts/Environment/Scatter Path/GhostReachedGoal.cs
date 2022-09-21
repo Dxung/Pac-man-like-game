@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 //when a ghost touch a scatter point, this script will change the next destination point
-public class TriggerForGhostGoal : MonoBehaviour
+public class GhostReachedGoal : MonoBehaviour
 {
     [SerializeField] private GhostName _triggerForWhichGhost;
 
@@ -16,8 +16,9 @@ public class TriggerForGhostGoal : MonoBehaviour
         Blinky_Pinky_ClydeMovementController ghostMovementController = other.gameObject.GetComponent<Blinky_Pinky_ClydeMovementController>();
         Blinky_Pinky_Inky_StateController ghostStateController = other.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
 
+
         //check if this point is the current goal point
-        if (ghostMovementController.CompareCurrentGoal(this.transform.position)) 
+        if (ghostMovementController.CompareCurrentGoal(this.transform.position))
         {
 
             //only change goal when ghost in scatter mode

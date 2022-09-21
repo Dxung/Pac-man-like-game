@@ -8,7 +8,8 @@ public class FirstPersonController : MonoBehaviour
     public bool _canMove { get; private set; } = true;
 
     [Header("Movement Parameters")]
-    [SerializeField] private float _walkSpeed = 3.0f;
+    [SerializeField] private float _constantSpeed = 2f;
+    [SerializeField] private float _walkSpeed;
     [SerializeField] private float _gravity = 9.8f;
 
     [Header("Look Parameters")]
@@ -24,6 +25,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField, Range(1, 180)] private float _upperLookLimit = 80.0f;
     [SerializeField, Range(1, 180)] private float _lowerLookLimit = 80.0f;
 
+    [Header("Player State")]
+    private PlayerStateController _playerStateController;
+
+    [Header("References")]
     private Camera _playerCamera;
     private CharacterController _myCharacterController;
 
@@ -39,6 +44,7 @@ public class FirstPersonController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _playerStateController = this.gameObject.GetComponentInChildren<PlayerStateController>();
         _playerCamera = GetComponentInChildren<Camera>();
         _myCharacterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,6 +54,7 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SpeedControl();
         if (_canMove)
         {
             HandleMovementInput();
@@ -115,5 +122,32 @@ public class FirstPersonController : MonoBehaviour
         //move player with the value "_moveDirection" we calculated above [ HandleMovementInput() and gravity pull ]
         _myCharacterController.Move(_moveDirection * Time.deltaTime);
 
+    }
+
+    ///Speed Control:
+    private void SpeedControl()
+    {
+        if (_playerStateController.CheckCurrentState(PlayerState.normal))
+        {
+            SpeedChange(_constantSpeed);
+        }
+        else if (_playerStateController.CheckCurrentState(PlayerState.consume))
+        {
+            SpeedChange(0.9f * _constantSpeed);
+        }
+        else if (_playerStateController.CheckCurrentState(PlayerState.powerUp))
+        {
+            SpeedChange(1.5f * _constantSpeed);
+        }
+    }
+
+    private void SpeedChange(int speed)
+    {
+        _walkSpeed = speed;
+    }
+
+    private void SpeedChange(float speed)
+    {
+        _walkSpeed = speed;
     }
 }

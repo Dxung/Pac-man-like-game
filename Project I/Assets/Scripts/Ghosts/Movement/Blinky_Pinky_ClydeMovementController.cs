@@ -28,6 +28,10 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     [Header("Ghost State Controller")]
     protected Blinky_Pinky_Inky_StateController _ghostStateController;
 
+    [Header("ghost speed")]
+    [SerializeField] protected float _ghostSpeed;
+    [SerializeField] protected bool _speedInModeChanged = false;
+
     protected void Start()
     {
         _ghostStateController = this.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
@@ -36,13 +40,26 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         //Spawn Ghost
         this.transform.position = _ghostData.GetSpawnPosition();
         ResetScatterPoint();
+
+        //Set initial speed:
+        if (_ghostData.CompareGhostName(GhostName.pinky))
+        {
+            _ghostSpeed = 1.5f;
+        }
+        else
+        {
+            _ghostSpeed = 2f;
+        }
+
+        SetGhostSpeed(_ghostSpeed);
+
+        
     }
 
 
     protected void Update()
     {
         UpdateMovement();
-
     }
 
     protected virtual void UpdateMovement()
@@ -73,25 +90,34 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     ///Movement:
     protected virtual void Chase()
     {
-        Debug.Log(_playerTransform.position);
+        SetGhostSpeed(_ghostSpeed);
+        ResetSpeedChangeStatus();
         _agent.SetDestination(_playerTransform.position);
     }
 
     protected void Scatter()
     {
+        SetGhostSpeed(_ghostSpeed);
+        ResetSpeedChangeStatus();
         _agent.SetDestination(GetCurrentScatterGoal());
     }
 
     protected void Frightened()
     {
-        SetSpeedPerCent(0.5f);
-        Debug.Log(_ghostData.GetSpawnPosition());
+        if (!_speedInModeChanged)
+        {
+            SetPerCentOfGhostSpeed(0.5f);
+        }
+        
         _agent.SetDestination(_ghostData.GetSpawnPosition());
     }
 
     protected void Eaten()
     {
-        SetSpeedPerCent(1.5f);
+        if (!_speedInModeChanged)
+        {
+            SetPerCentOfGhostSpeed(1.5f);
+        }
         _agent.SetDestination(_ghostData.GetSpawnPosition());
     }
 
@@ -99,9 +125,21 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
 
 
     ///Speed of Navigation Path Agent
-    private void SetSpeedPerCent(float percentOfTheNewSpeed)
+    private void SetPerCentOfGhostSpeed(float percentOfTheNewSpeed)
     {
-        _agent.speed = _agent.speed * percentOfTheNewSpeed;
+        float temp = _ghostSpeed * percentOfTheNewSpeed;
+        SetGhostSpeed(temp);
+        
+    }
+
+    private void SetGhostSpeed(float speed)
+    {
+        _agent.speed = speed;
+    }
+
+    private void ResetSpeedChangeStatus()
+    {
+        _speedInModeChanged = false;
     }
 
 
@@ -171,5 +209,7 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     {
         return GetCurrentScatterGoal() == position;
     }
+
+
 }
 
