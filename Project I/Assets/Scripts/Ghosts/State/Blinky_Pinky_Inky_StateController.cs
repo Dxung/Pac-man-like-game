@@ -10,7 +10,6 @@ public enum GhostState
     eaten
 }
 
-//this script contains methods that control the state system of all ghost
 public class Blinky_Pinky_Inky_StateController : MonoBehaviour
 {
     [Header("Ghost State")]
@@ -45,9 +44,6 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
                                                         /// ~~TRIGGER CHANGING STATE~~
 
     //Used when change ghost state to FrightenedMode
-    //Pause Timer
-    //reset timer to 0
-    //Change State to Frightened
     //cannot change while in eaten state
     public void TurnToFrightenedState()
     {
@@ -98,9 +94,6 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         }
     }
 
-    // check if time for scatter mode at that iteration is over?
-    //no? : continue counting down
-    //yes? : switch other state & reset timer
     private void UpdateScatterMode()
     {
         if (IsTimeOut(GetScatterModeTimeAt(_modeSwitchIteration)))
@@ -114,9 +107,6 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         }
     }
 
-    // check if time for chase mode at that iteration is over?
-    //no? : continue counting down
-    //yes? : switch other state & reset timer & to the next "switch iteration"
     private void UpdateChaseMode()
     {
         if (IsTimeOut(GetChaseModeTimeAt(_modeSwitchIteration)))
@@ -131,9 +121,6 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         }
     }
 
-    //check if time for frighten mode is over?
-    //no? : continue counting down
-    //yes? : switch back to previous state and timer
     protected void UpdateFrightenedMode()
     {
         if (IsTimeOut(_stateModeTime.GetFrightenedPowerUpTime()))
@@ -152,7 +139,7 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
 
                                                         /// ~~PAUSE/RESUME PREVIOUS STAGE~~
 
-    //Used when ghost state change to frightened mode/eaten mode
+    //Use when ghost state change to frightened mode/eaten mode
     //save current Timer
     //save current ghost state
     //do not save frighten/eaten status & timer
@@ -167,7 +154,7 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         }
     }
 
-    //Used when ghost state finish its frightened mode/ eaten mode
+    //Use when ghost state finish its frightened mode/ eaten mode
     //set Timer back to where it stops 
     //set state back to where it stops
     private void ResumeGhostStatus()

@@ -11,24 +11,26 @@ public class GhostReachedGoal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
- 
-        //get the component of the ghost touching the trigger
-        Blinky_Pinky_ClydeMovementController ghostMovementController = other.gameObject.GetComponent<Blinky_Pinky_ClydeMovementController>();
-        Blinky_Pinky_Inky_StateController ghostStateController = other.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
 
-
-        //check if this point is the current goal point
-        if (ghostMovementController.CompareCurrentGoal(this.transform.position))
+        if (other.gameObject.CompareTag("Ghosts"))
         {
+            //get the component of the ghost touching the trigger
+            Blinky_Pinky_ClydeMovementController ghostMovementController = other.gameObject.GetComponent<Blinky_Pinky_ClydeMovementController>();
+            Blinky_Pinky_Inky_StateController ghostStateController = other.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
 
-            //only change goal when ghost in scatter mode
-            if (ghostStateController.CheckCurrentState(GhostState.scatter))
+            //check if this point is the current goal point
+            if (ghostMovementController.CompareCurrentGoal(this.transform.position))
             {
-                
-             //check if this ghost  has the same "Ghost Name" with the one set for this point
-                if (ghostMovementController.IsItThisGhost(_triggerForWhichGhost))
+
+                //only change goal when ghost in scatter mode
+                if (ghostStateController.CheckCurrentState(GhostState.scatter))
                 {
-                    ghostMovementController.ChangeGoal();
+
+                    //check if this ghost  has the same "Ghost Name" with the one set for this point
+                    if (ghostMovementController.IsItThisGhost(_triggerForWhichGhost))
+                    {
+                        ghostMovementController.ChangeGoal();
+                    }
                 }
             }
         }

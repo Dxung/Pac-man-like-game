@@ -17,11 +17,6 @@ public class PelletColliderController : MonoBehaviour
     [SerializeField] protected StateForPellets _StateControllerForPellet;
 
 
-    private void Start()
-    {
-        Debug.Log(_StateControllerForPellet);
-    }
-
     protected void Awake()
     {
         AddStateForPelletFunction();
@@ -31,12 +26,10 @@ public class PelletColliderController : MonoBehaviour
         _pelletTrigger = this.GetComponent<Collider>();
         _pelletLight = this.transform.parent.GetComponentInChildren<Light>();
 
-        //get the time that particle system complete all circle
-        _particleSystemDuration = _pelletParticleSystem.main.duration + _pelletParticleSystem.main.startLifetime.constant;
+        ParticleSystemDuration();
 
 
     }
-    //this script will work when pellets be touched by player
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -53,7 +46,6 @@ public class PelletColliderController : MonoBehaviour
     //change player state to consume (if not in powerup)
     protected virtual void ChangeplayerState()
     {
-        Debug.Log(_StateControllerForPellet.GetPlayerStateController());
         PlayerStateController playerStateControl = _StateControllerForPellet.GetPlayerStateController();
         playerStateControl.TurnToConsumeState();
     }
@@ -67,20 +59,17 @@ public class PelletColliderController : MonoBehaviour
     //use when pellet be collided
     protected void ChangePelletStatus()
     {
-        //turn off mesh, so you will not see the pellet remains on screen when particles come out
         _pelletMesh.enabled = false;
-
-        //turn off light
         _pelletLight.enabled = false;
-
-        //turn off trigger collider
         _pelletTrigger.enabled = false;
 
-
-
-        //play particle effect
         _pelletParticleSystem.Play();
 
         Destroy(this.transform.parent.gameObject, _particleSystemDuration);
+    }
+
+    protected void ParticleSystemDuration()
+    {
+        _particleSystemDuration = _pelletParticleSystem.main.duration + _pelletParticleSystem.main.startLifetime.constant;
     }
 }

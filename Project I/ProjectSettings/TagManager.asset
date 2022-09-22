@@ -10,6 +10,7 @@ TagManager:
   - Pinky
   - Inky
   - Clyde
+  - player Collider
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ghosts
   - CharacterController
   - Pellet
-  - 
+  - Player Collider
   - 
   - 
   - 

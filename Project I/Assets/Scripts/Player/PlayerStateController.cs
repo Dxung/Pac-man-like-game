@@ -6,7 +6,8 @@ public enum PlayerState
 {
     normal,
     consume,
-    powerUp
+    powerUp,
+    dead
 }
 
 public class PlayerStateController : MonoBehaviour
@@ -19,7 +20,7 @@ public class PlayerStateController : MonoBehaviour
     [Header("Timer")]
     [SerializeField] private float _currentTimer;
 
-    private void Awake()
+    private void Start()
     {
         ChangeState(PlayerState.normal);
     }
@@ -106,14 +107,24 @@ public class PlayerStateController : MonoBehaviour
     //if in powerup state, speed can not be changed
     public void TurnToConsumeState()
     {
-        if (!CheckCurrentState(PlayerState.powerUp))
+        if (!CheckCurrentState(PlayerState.powerUp)||!CheckCurrentState(PlayerState.dead))
         {
+            ResetTimer();
             ChangeState(PlayerState.consume);
         }
     }
 
     public void TurnToPowerUpState()
     {
-        ChangeState(PlayerState.powerUp);
+        if (!CheckCurrentState(PlayerState.dead))
+        {
+            ResetTimer();
+            ChangeState(PlayerState.powerUp);
+        }
+    }
+
+    public void Dead()
+    {
+        ChangeState(PlayerState.dead);
     }
 }

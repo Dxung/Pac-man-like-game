@@ -30,7 +30,7 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
 
     [Header("ghost speed")]
     [SerializeField] protected float _ghostSpeed;
-    [SerializeField] protected bool _speedInModeChanged = false;
+    [SerializeField] protected bool _ghostStop;
 
     protected void Start()
     {
@@ -41,19 +41,12 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         this.transform.position = _ghostData.GetSpawnPosition();
         ResetScatterPoint();
 
-        //Set initial speed:
-        if (_ghostData.CompareGhostName(GhostName.pinky))
-        {
-            _ghostSpeed = 1.5f;
-        }
-        else
-        {
-            _ghostSpeed = 2f;
-        }
+        //ghost speed
+        GhostStopOrNot(false);
+        SetupStartingSpeed();
 
-        SetGhostSpeed(_ghostSpeed);
 
-        
+
     }
 
 
@@ -62,28 +55,36 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         UpdateMovement();
     }
 
+    protected void LateUpdate()
+    {
+        LookAtMovingDirection();
+    }
+
     protected virtual void UpdateMovement()
     {
-        if (_ghostStateController.CheckCurrentState(GhostState.chase))
+        if (!_ghostStop)
         {
-
-            if (!CompareCurrentScatterPoint(0))
+            if (_ghostStateController.CheckCurrentState(GhostState.chase))
             {
-                ResetScatterPoint();
+
+                if (!CompareCurrentScatterPoint(0))
+                {
+                    ResetScatterPoint();
+                }
+                Chase();
             }
-            Chase();
-        }
-        if (_ghostStateController.CheckCurrentState(GhostState.scatter))
-        {
-            Scatter();
-        }
-        if (_ghostStateController.CheckCurrentState(GhostState.frightened))
-        {
-            Frightened();
-        }
-        if (_ghostStateController.CheckCurrentState(GhostState.eaten))
-        {
-            Eaten();
+            if (_ghostStateController.CheckCurrentState(GhostState.scatter))
+            {
+                Scatter();
+            }
+            if (_ghostStateController.CheckCurrentState(GhostState.frightened))
+            {
+                Frightened();
+            }
+            if (_ghostStateController.CheckCurrentState(GhostState.eaten))
+            {
+                Eaten();
+            }
         }
     }
 
@@ -91,33 +92,24 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     protected virtual void Chase()
     {
         SetGhostSpeed(_ghostSpeed);
-        ResetSpeedChangeStatus();
         _agent.SetDestination(_playerTransform.position);
     }
 
     protected void Scatter()
     {
         SetGhostSpeed(_ghostSpeed);
-        ResetSpeedChangeStatus();
         _agent.SetDestination(GetCurrentScatterGoal());
     }
 
     protected void Frightened()
     {
-        if (!_speedInModeChanged)
-        {
-            SetPerCentOfGhostSpeed(0.5f);
-        }
-        
+         SetPerCentOfGhostSpeed(0.5f);
         _agent.SetDestination(_ghostData.GetSpawnPosition());
     }
 
     protected void Eaten()
     {
-        if (!_speedInModeChanged)
-        {
-            SetPerCentOfGhostSpeed(1.5f);
-        }
+         SetPerCentOfGhostSpeed(1.5f);
         _agent.SetDestination(_ghostData.GetSpawnPosition());
     }
 
@@ -125,6 +117,21 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
 
 
     ///Speed of Navigation Path Agent
+    
+    protected void SetupStartingSpeed()
+    {
+        if (_ghostData.CompareGhostName(GhostName.pinky))
+        {
+            _ghostSpeed = 1.3f;
+        }
+        else
+        {
+            _ghostSpeed = 1.8f;
+        }
+
+        SetGhostSpeed(_ghostSpeed);
+    }
+
     private void SetPerCentOfGhostSpeed(float percentOfTheNewSpeed)
     {
         float temp = _ghostSpeed * percentOfTheNewSpeed;
@@ -137,9 +144,9 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         _agent.speed = speed;
     }
 
-    private void ResetSpeedChangeStatus()
+    public void GhostStopOrNot(bool status)
     {
-        _speedInModeChanged = false;
+        _ghostStop = status;
     }
 
 
@@ -176,6 +183,15 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         return _ghostData.CompareGhostName(name);
     }
 
+    ///For Ghosts' Rotation: Ghost Looks at the direction its going
+
+    protected void LookAtMovingDirection()
+    {
+        if (_agent.velocity.sqrMagnitude > Mathf.Epsilon)
+        {
+            this.gameObject.transform.rotation = Quaternion.LookRotation(_agent.velocity.normalized);
+        }
+    }
 
     ///Getter And Setter
 

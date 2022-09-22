@@ -138,6 +138,9 @@ public class FirstPersonController : MonoBehaviour
         else if (_playerStateController.CheckCurrentState(PlayerState.powerUp))
         {
             SpeedChange(1.5f * _constantSpeed);
+        }else if (_playerStateController.CheckCurrentState(PlayerState.dead))
+        {
+            SpeedChange(0);
         }
     }
 
