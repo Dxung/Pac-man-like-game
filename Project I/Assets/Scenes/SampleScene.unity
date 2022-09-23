@@ -430,6 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534261632}
+  - component: {fileID: 534261633}
   m_Layer: 8
   m_Name: Effect Controller
   m_TagString: Untagged
@@ -452,6 +453,30 @@ Transform:
   m_Father: {fileID: 7336213890839064593}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &534261633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534261631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6381580a303954dabbfd3d52a1ac1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostMaterials:
+  - {fileID: 2100000, guid: 832393574a2cb6c4f994c51a8e8ca768, type: 2}
+  - {fileID: 2100000, guid: 9ab65532a1ff51e4e85e5cdf93551f95, type: 2}
+  - {fileID: 2100000, guid: 014dd00244a23c44991d5896889e371c, type: 2}
+  _partsToDisappear:
+  - {fileID: 4222677621472188482}
+  - {fileID: 1151521603358329341}
+  - {fileID: 628909317942966324}
+  _ghostOriginMaterialColors: []
+  _wantedColor: {r: 0, g: 0, b: 0, a: 0}
+  _disappear: 0
+  _changedColor: 0
 --- !u!1 &639236013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1264412253}
+  - component: {fileID: 1264412254}
   m_Layer: 8
   m_Name: Effect Controller
   m_TagString: Untagged
@@ -1143,6 +1169,30 @@ Transform:
   m_Father: {fileID: 7336213891207866255}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1264412254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264412252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6381580a303954dabbfd3d52a1ac1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostMaterials:
+  - {fileID: 2100000, guid: 7ce9aba243abade48999ad8e4fff6748, type: 2}
+  - {fileID: 2100000, guid: a84ed1d93f56c47478d725f39811c11b, type: 2}
+  - {fileID: 2100000, guid: 5e5ae5ece037fc8428ff2c7a0bfd101c, type: 2}
+  _partsToDisappear:
+  - {fileID: 4222677622981906396}
+  - {fileID: 1151521605069315683}
+  - {fileID: 628909317238091690}
+  _ghostOriginMaterialColors: []
+  _wantedColor: {r: 0, g: 0, b: 0, a: 0}
+  _disappear: 0
+  _changedColor: 0
 --- !u!1 &1486643308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7237,6 +7287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1877071263}
+  - component: {fileID: 1877071264}
   m_Layer: 8
   m_Name: Effect Controller
   m_TagString: Untagged
@@ -7259,6 +7310,30 @@ Transform:
   m_Father: {fileID: 7336213891752883408}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1877071264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877071262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6381580a303954dabbfd3d52a1ac1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostMaterials:
+  - {fileID: 2100000, guid: 2f634e771e82df847a7b71f2335c9c24, type: 2}
+  - {fileID: 2100000, guid: 61224548cb15caf48bda457de20e859f, type: 2}
+  - {fileID: 2100000, guid: e45e8915f85f1974eb08b7534bed481d, type: 2}
+  _partsToDisappear:
+  - {fileID: 4222677622420642947}
+  - {fileID: 1151521604557360444}
+  - {fileID: 628909316709334261}
+  _ghostOriginMaterialColors: []
+  _wantedColor: {r: 0, g: 0, b: 0, a: 0}
+  _disappear: 0
+  _changedColor: 0
 --- !u!1 &1956138240
 GameObject:
   m_ObjectHideFlags: 0
@@ -8849,7 +8924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6625901911513495945
 GameObject:
   m_ObjectHideFlags: 0
@@ -8869,7 +8944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6625901911941377626
 GameObject:
   m_ObjectHideFlags: 0
@@ -8909,7 +8984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6956088095944887894
 GameObject:
   m_ObjectHideFlags: 0
@@ -9423,7 +9498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6625901911941377626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.33, y: 0, z: -3.44}
+  m_LocalPosition: {x: -6.05, y: 0, z: 12.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
