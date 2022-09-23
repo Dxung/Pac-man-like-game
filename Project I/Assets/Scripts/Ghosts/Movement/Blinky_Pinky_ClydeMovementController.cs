@@ -146,7 +146,8 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
 
     public void GhostStopOrNot(bool status)
     {
-        _ghostStop = status;
+        _ghostStop = status; //ghostStop just stop ghost from updating goal,so:
+        SetGhostSpeed(0);    //if not set ghost speed to 0, ghosts will finish its current goal before stop
     }
 
 

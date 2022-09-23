@@ -34,7 +34,7 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     protected void Update()
     {
 
-        Debugger();
+        //Debugger();
         UpdateGhostState();
     }
 
@@ -216,24 +216,24 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     }
 
     /// Debug Only
-    [SerializeField] private bool _check;
-    [SerializeField] private bool _checked;
+    //[SerializeField] private bool _check;
+    //[SerializeField] private bool _checked;
 
 
-    private void Debugger()
-    {
-        if (_check)
-        {
-            if (!_checked)
-            {
-                _checked = true;
-                Check();
-            }
-        }
-    }
-    private void Check()
-    {
-        TurnToFrightenedState();
-    }
+    //private void Debugger()
+    //{
+    //    if (_check)
+    //    {
+    //        if (!_checked)
+    //        {
+    //            _checked = true;
+    //            Check();
+    //        }
+    //    }
+    //}
+    //private void Check()
+    //{
+    //    TurnToFrightenedState();
+    //}
 
 }

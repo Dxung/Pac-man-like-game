@@ -107,7 +107,7 @@ public class PlayerStateController : MonoBehaviour
     //if in powerup state, speed can not be changed
     public void TurnToConsumeState()
     {
-        if (!CheckCurrentState(PlayerState.powerUp)||!CheckCurrentState(PlayerState.dead))
+        if (!CheckCurrentState(PlayerState.powerUp) && !CheckCurrentState(PlayerState.dead))
         {
             ResetTimer();
             ChangeState(PlayerState.consume);
