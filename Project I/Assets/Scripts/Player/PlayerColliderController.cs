@@ -37,6 +37,4 @@ public class PlayerColliderController : MonoBehaviour
     {
         _ghostStateController.TurnToEatenState();
     }
-
-
 }

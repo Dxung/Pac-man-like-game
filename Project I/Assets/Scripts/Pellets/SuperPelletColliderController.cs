@@ -10,7 +10,7 @@ public class SuperPelletColliderController : PelletColliderController
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
+            PlayPlayerConsumeSound(other.gameObject);
             ChangeplayerState();
             ChangeGhostState();
 

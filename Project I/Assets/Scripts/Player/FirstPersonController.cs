@@ -89,7 +89,6 @@ public class FirstPersonController : MonoBehaviour
         */
         _moveDirection = (transform.TransformDirection(Vector3.forward) * _currentInput.x) + (transform.TransformDirection(Vector3.right) * _currentInput.y);
 
-
         //To reset player's height to its orginal value before calculating
         _moveDirection.y = moveDirectionY;
 

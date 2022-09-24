@@ -26,12 +26,15 @@ public class GhostEffectController : MonoBehaviour
     [Header("bool value")]
     [SerializeField] private bool _disappear;
     [SerializeField] private bool _changedColor;
+    [SerializeField] bool _eatenSoundPlayed;
+
 
     private void Start()
     {
         _ghostStateController = this.transform.parent.parent.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
         _disappear = false;
         _changedColor = false;
+        _eatenSoundPlayed = false;
 
 
         StoreOriginColor();
@@ -56,6 +59,10 @@ public class GhostEffectController : MonoBehaviour
             {
                 ReAppearParts();
             }
+            if (_eatenSoundPlayed)
+            {
+                _eatenSoundPlayed = false;
+            }
             
         }
         else if (_ghostStateController.CheckCurrentState(GhostState.frightened))
@@ -64,7 +71,8 @@ public class GhostEffectController : MonoBehaviour
         }
         else if (_ghostStateController.CheckCurrentState(GhostState.eaten))
         {
-            PLayEatenEffect();
+            PlayEatenEffect();
+            PlayEatenSound();
         }
     }
 
@@ -81,12 +89,13 @@ public class GhostEffectController : MonoBehaviour
         }
     }
 
-    private void PLayEatenEffect()
+    private void PlayEatenEffect()
     {
         if (!_disappear)
         {
             DisapearParts();   
         }
+
         
     }
 
@@ -126,5 +135,14 @@ public class GhostEffectController : MonoBehaviour
         }
 
         _disappear = true;
+    }
+
+    private void PlayEatenSound()
+    {
+        if (!_eatenSoundPlayed)
+        {
+            this.gameObject.GetComponent<AudioManager>().Play("eaten");
+            _eatenSoundPlayed = true;
+        }
     }
 }

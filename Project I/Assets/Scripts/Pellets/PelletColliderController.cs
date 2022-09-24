@@ -34,9 +34,9 @@ public class PelletColliderController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //change player state
+            PlayPlayerConsumeSound(other.gameObject);
             ChangeplayerState();
-
+            
             ChangePelletStatus();
 
 
@@ -72,4 +72,10 @@ public class PelletColliderController : MonoBehaviour
     {
         _particleSystemDuration = _pelletParticleSystem.main.duration + _pelletParticleSystem.main.startLifetime.constant;
     }
+
+    protected void PlayPlayerConsumeSound(GameObject player)
+    {
+        player.GetComponentInChildren<AudioManager>().Play("pellet eating");
+    }
+
 }

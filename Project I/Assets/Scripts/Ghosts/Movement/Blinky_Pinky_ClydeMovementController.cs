@@ -122,11 +122,11 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     {
         if (_ghostData.CompareGhostName(GhostName.pinky))
         {
-            _ghostSpeed = 1.3f;
+            _ghostSpeed = 1.17f;
         }
         else
         {
-            _ghostSpeed = 1.8f;
+            _ghostSpeed = 1.62f;
         }
 
         SetGhostSpeed(_ghostSpeed);
