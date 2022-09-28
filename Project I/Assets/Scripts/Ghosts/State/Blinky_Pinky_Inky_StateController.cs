@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum GhostState
 {
@@ -40,6 +41,15 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
 
 
    
+    ///after player colliding checking
+    public void ReSpawnGhostState()
+    {
+        ResetIteration();
+        ResetTimer();
+        ChangeGhostState(GhostState.scatter);
+    }
+
+
 
                                                         /// ~~TRIGGER CHANGING STATE~~
 
@@ -183,6 +193,11 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
         _modeSwitchIteration++;
     }
 
+    private void ResetIteration()
+    {
+        _modeSwitchIteration = 1;
+    }
+
     //get the appropriate mode time at which iteration from the data "statemodetime"
     private int GetScatterModeTimeAt(int iteration)
     {
@@ -213,6 +228,12 @@ public class Blinky_Pinky_Inky_StateController : MonoBehaviour
     private void TimeRun()
     {
         _currentTimer += Time.deltaTime;
+    }
+
+    public bool FrightenNearlyOver(float secondsleft)
+    {
+        float secondsRunned = _stateModeTime.GetFrightenedPowerUpTime() - secondsleft;
+        return _currentTimer > secondsRunned;
     }
 
     /// Debug Only

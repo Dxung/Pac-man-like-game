@@ -41,6 +41,14 @@ public class FirstPersonController : MonoBehaviour
     // we just need a reference here, not a temp variable.
     private float _rotationX = 0;
 
+    [SerializeField] private Vector3 _startingposition;
+
+
+    private void Start()
+    {
+        ReSpawnPacman();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -152,4 +160,16 @@ public class FirstPersonController : MonoBehaviour
     {
         _walkSpeed = speed;
     }
+
+    public void ReSpawnPacman()
+    {
+        _canMove = false;
+        this.gameObject.GetComponent<CharacterController>().enabled = false;
+        this.gameObject.transform.position = _startingposition;
+        this.gameObject.GetComponent<CharacterController>().enabled = true;
+        _canMove = true;
+        SpeedChange(_constantSpeed);
+        _playerStateController.ReSpawn();
+    }
+
 }

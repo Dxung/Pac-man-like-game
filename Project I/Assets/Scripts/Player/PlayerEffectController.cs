@@ -21,7 +21,6 @@ public class PlayerEffectController : MonoBehaviour
     {
         UpdateSoundEffect();
     }
-
     private void UpdateSoundEffect()
     {
         if (_playerStateController.CheckCurrentState(PlayerState.normal))

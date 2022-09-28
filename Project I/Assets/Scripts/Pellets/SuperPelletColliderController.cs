@@ -10,6 +10,7 @@ public class SuperPelletColliderController : PelletColliderController
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            ConsumePellet(other.gameObject);
             PlayPlayerConsumeSound(other.gameObject);
             ChangeplayerState();
             ChangeGhostState();
@@ -17,6 +18,11 @@ public class SuperPelletColliderController : PelletColliderController
             ChangePelletStatus();
 
         }
+    }
+
+    protected override void ConsumePellet(GameObject player)
+    {
+        player.GetComponentInChildren<PlayerColliderController>().ConsumePowerPellet();
     }
 
     //change player state to consume (if not in powerup)

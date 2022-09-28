@@ -12,6 +12,7 @@ public class PelletColliderController : MonoBehaviour
     protected Collider _pelletTrigger;
     protected MeshRenderer _pelletMesh;
     protected Light _pelletLight;
+    protected SpriteRenderer _pelletMinimapIconSprite;
 
     [Header("State Controller")]
     [SerializeField] protected StateForPellets _StateControllerForPellet;
@@ -25,6 +26,7 @@ public class PelletColliderController : MonoBehaviour
         _pelletMesh = this.transform.parent.GetComponent<MeshRenderer>();
         _pelletTrigger = this.GetComponent<Collider>();
         _pelletLight = this.transform.parent.GetComponentInChildren<Light>();
+        _pelletMinimapIconSprite = this.transform.parent.GetComponentInChildren<SpriteRenderer>();
 
         ParticleSystemDuration();
 
@@ -34,6 +36,8 @@ public class PelletColliderController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            ConsumePellet(other.gameObject);
+
             PlayPlayerConsumeSound(other.gameObject);
             ChangeplayerState();
             
@@ -41,6 +45,12 @@ public class PelletColliderController : MonoBehaviour
 
 
         }
+    }
+
+    protected virtual void ConsumePellet(GameObject player)
+    {
+        player.GetComponentInChildren<PlayerColliderController>().ConsumeSmallPellet();
+        
     }
 
     //change player state to consume (if not in powerup)
@@ -62,6 +72,7 @@ public class PelletColliderController : MonoBehaviour
         _pelletMesh.enabled = false;
         _pelletLight.enabled = false;
         _pelletTrigger.enabled = false;
+        _pelletMinimapIconSprite.enabled = false;
 
         _pelletParticleSystem.Play();
 
@@ -77,5 +88,6 @@ public class PelletColliderController : MonoBehaviour
     {
         player.GetComponentInChildren<AudioManager>().Play("pellet eating");
     }
+
 
 }

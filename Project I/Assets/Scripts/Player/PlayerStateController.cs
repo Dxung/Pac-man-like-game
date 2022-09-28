@@ -20,14 +20,19 @@ public class PlayerStateController : MonoBehaviour
     [Header("Timer")]
     [SerializeField] private float _currentTimer;
 
+    
+
+    
+
     private void Start()
     {
-        ChangeState(PlayerState.normal);
+        ReSpawn();
     }
 
     private void Update()
     {
         UpdatePlayerState();
+
     }
 
     private void UpdatePlayerState()
@@ -126,5 +131,10 @@ public class PlayerStateController : MonoBehaviour
     public void Dead()
     {
         ChangeState(PlayerState.dead);
+    }
+
+    public void ReSpawn()
+    {
+        ChangeState(PlayerState.normal);
     }
 }

@@ -19,7 +19,9 @@ public class WallGenerating : MonoBehaviour
 
     [Header("check floating height of pellet")]
     [SerializeField] private float _up;
-    [SerializeField] private int _numberOfPellet = 0;
+
+    [Header("UI")]
+    [SerializeField] private PelletCounter _pelletCounterUI;
 
     
     
@@ -49,12 +51,13 @@ public class WallGenerating : MonoBehaviour
             {
                 Vector3 cellPosition = _myTileMap.GetCellCenterWorld(position);
                 Instantiate(_superPellet, cellPosition + new Vector3(0, _up, 0), Quaternion.identity);
+                _pelletCounterUI.AddPowerPelletToCounter();
             }
             else
             {
                 Vector3 cellPosition = _myTileMap.GetCellCenterWorld(position);
                 Instantiate(_smallPellet, cellPosition + new Vector3(0, _up, 0), Quaternion.identity);
-                _numberOfPellet += 1;
+                _pelletCounterUI.AddSmallPelletToCounter();
             }
             
         }

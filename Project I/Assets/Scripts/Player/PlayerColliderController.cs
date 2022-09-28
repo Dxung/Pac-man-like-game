@@ -8,6 +8,10 @@ public class PlayerColliderController : MonoBehaviour
     Blinky_Pinky_Inky_StateController _ghostStateController;
     PlayerStateController _playerStateController;
 
+    [SerializeField] PelletCounter _pelletCounter;
+    [SerializeField] ScoreCounter _scoreCounter;
+    [SerializeField] private GameController _gameController;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ghosts"))
@@ -18,23 +22,37 @@ public class PlayerColliderController : MonoBehaviour
 
             if (_playerStateController.CheckCurrentState(PlayerState.powerUp) && _ghostStateController.CheckCurrentState(GhostState.frightened))
             {
-                PlayerKillGhost();
+                _ghostStateController.TurnToEatenState();
+                AddGhostKillingPoint();
             }
             else if(_ghostStateController.CheckCurrentState(GhostState.scatter) || _ghostStateController.CheckCurrentState(GhostState.chase))
             {
-                GhostKillPlayer();
+                _playerStateController.Dead();
+                GhostKillPacmanUI();
             }
         }
     }
 
-    private void GhostKillPlayer()
+    public void ConsumeSmallPellet()
     {
-        _playerStateController.Dead();
-        _ghostMovementController.GhostStopOrNot(true);
+        _pelletCounter.ConsumeSmallPellet();
+        _scoreCounter.AddPointFromSmallPellet();
     }
 
-    private void PlayerKillGhost()
+    public void ConsumePowerPellet()
     {
-        _ghostStateController.TurnToEatenState();
+        _pelletCounter.ConsumePowerPellet();
+        _scoreCounter.AddPointFromPowerPellet();
     }
+
+    private void AddGhostKillingPoint()
+    {
+        _scoreCounter.AddPointFromGhost();
+    }
+    
+    private void GhostKillPacmanUI()
+    {
+        _gameController.CheckIfGameOver();
+    }
+
 }

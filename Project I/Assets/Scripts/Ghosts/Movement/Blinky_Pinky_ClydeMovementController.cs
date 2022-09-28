@@ -32,6 +32,8 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     [SerializeField] protected float _ghostSpeed;
     [SerializeField] protected bool _ghostStop;
 
+    [SerializeField] public bool _click;
+
     protected void Start()
     {
         _ghostStateController = this.gameObject.GetComponentInChildren<Blinky_Pinky_Inky_StateController>();
@@ -42,7 +44,7 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         ResetScatterPoint();
 
         //ghost speed
-        GhostStopOrNot(false);
+        _ghostStop = false;
         SetupStartingSpeed();
 
 
@@ -53,6 +55,13 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
     protected void Update()
     {
         UpdateMovement();
+
+        if (_click)
+        {
+            this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            this.gameObject.transform.position = Vector3.zero;
+            this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        }
     }
 
     protected void LateUpdate()
@@ -86,6 +95,31 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
                 Eaten();
             }
         }
+    }
+    
+    ///ReSpawn
+    
+    //teleport ghosts back
+    // reset scatter point
+    //turn on navmesh agent again
+    //start updating movement for state again
+    public void RespawnGhostMovement()
+    {
+        this.gameObject.transform.position = _ghostData.GetSpawnPosition();
+        ResetScatterPoint();
+        this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        _ghostStop = false;
+    }
+
+    //not update speed for state
+    //disable navmesh agent
+    public void GhostStop()
+    {
+        _ghostStop = true;
+        _agent.SetDestination(this.gameObject.transform.position);
+        SetGhostSpeed(0);
+        this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
     }
 
     ///Movement:
@@ -139,16 +173,11 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         
     }
 
-    private void SetGhostSpeed(float speed)
+    protected void SetGhostSpeed(float speed)
     {
         _agent.speed = speed;
     }
 
-    public void GhostStopOrNot(bool status)
-    {
-        _ghostStop = status; //ghostStop just stop ghost from updating goal,so:
-        SetGhostSpeed(0);    //if not set ghost speed to 0, ghosts will finish its current goal before stop
-    }
 
 
     ///Scatter Path                                            

@@ -11,12 +11,12 @@ public class GhostSirenEffect : MonoBehaviour
     [SerializeField] protected bool _isSoundOn;
     
 
-    private void Start()
+    protected void Start()
     {
         _isSoundOn = false;
     }
 
-    void Update()
+    protected void Update()
     {
         Transform bestGhost = null;
         float closestDistanceSqr = Mathf.Infinity;
@@ -24,6 +24,7 @@ public class GhostSirenEffect : MonoBehaviour
         {
             if (CheckIfGhostNeedsSiren(potentialGhost))
             {
+        
                 Vector3 directionToGhost = potentialGhost.transform.position - _pacmanTransform.position;
                 float dSqrToGhost = directionToGhost.sqrMagnitude;
                 if (dSqrToGhost < closestDistanceSqr)
@@ -31,17 +32,17 @@ public class GhostSirenEffect : MonoBehaviour
                     closestDistanceSqr = dSqrToGhost;
                     bestGhost = potentialGhost.transform;
                 }
-                FoundSuitableGhost();
-            }
-            else
-            {
-                NotFoundSuitableGhost();
-            }
+            }    
         }
 
         if (bestGhost != null)
         {
             transform.position = bestGhost.position;
+            FoundSuitableGhost();
+        }
+        else
+        {
+            NotFoundSuitableGhost();
         }
     }
 

@@ -13,6 +13,7 @@ public class InkyMovementController : Blinky_Pinky_ClydeMovementController
     {
         if (_ghostData.CompareGhostName(GhostName.inky))
         {
+            SetGhostSpeed(_ghostSpeed);
             _pos = transform.position + (_playerTransform.position - _otherGhosts.transform.position) * 1.5f;
             _agent.SetDestination(_pos);
         }

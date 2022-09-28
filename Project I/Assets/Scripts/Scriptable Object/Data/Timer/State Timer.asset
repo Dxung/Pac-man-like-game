@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frightenedPowerUpTimer: 8
   _scatterModeTime: 07000000070000000500000005000000
-  _chaseModeTime: 640000001400000014000000
+  _chaseModeTime: 140000001400000014000000
   _consumeTime: 2
