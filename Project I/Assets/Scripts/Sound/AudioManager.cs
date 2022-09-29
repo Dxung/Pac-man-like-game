@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
             sound.SetSourceRollOffMode(sound.GetSoundRollOffMode());
             sound.SetSourceMaxDistance(sound.GetSoundMaxDistance());
             sound.SetSourceMinDistance(sound.GetSoundMinDistance());
+            sound.AddSourceOutputMixer(sound.GetSoundOutputMixer());
         }
     }
 

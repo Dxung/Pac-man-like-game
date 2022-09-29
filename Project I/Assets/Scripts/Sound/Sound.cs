@@ -24,6 +24,14 @@ public class Sound
     [SerializeField] private float _minDistance;
     [SerializeField] private float _maxDistance;
 
+    [SerializeField] private AudioMixerGroup _outPut;
+   
+
+
+    public AudioMixerGroup GetSoundOutputMixer()
+    {
+        return _outPut;
+    }
 
     public AudioRolloffMode GetSoundRollOffMode()
     {
@@ -75,6 +83,11 @@ public class Sound
         return _2dOr3d;
     }
 
+
+    public void AddSourceOutputMixer(AudioMixerGroup output)
+    {
+        _source.outputAudioMixerGroup = output;
+    }
 
     public void AddAudioSource(AudioSource source)
     {

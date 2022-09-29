@@ -33,8 +33,6 @@ public class ScoreCounter : MonoBehaviour
 
     public void AddPointFromGhost()
     {
-        Debug.Log(_ghostKilled);
-        Debug.Log(200 * Convert.ToInt64(Mathf.Pow(2, _ghostKilled)));
         _score += 200 * Convert.ToInt64(Mathf.Pow(2, _ghostKilled));
         _ghostKilled += 1;
         UpdatePoint();

@@ -570,6 +570,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 2
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +997,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 2
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!1 &573932237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1432,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 9
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!1 &761234629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1740,7 @@ MonoBehaviour:
     _rollOffMode: 0
     _minDistance: 0
     _maxDistance: 5
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
   - _name: died
     _audioClip: {fileID: 8300000, guid: 213e8e3ffbd979f43a2d04915bfbbed1, type: 3}
     _volume: 1
@@ -1747,6 +1751,7 @@ MonoBehaviour:
     _rollOffMode: 0
     _minDistance: 0
     _maxDistance: 5
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!114 &984854669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2682,6 +2687,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 2
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!1 &1285172674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,6 +2943,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 9
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!114 &1428156365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3347,8 +3354,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1.2238, y: -57}
-  m_SizeDelta: {x: 315.0263, y: 114}
+  m_AnchoredPosition: {x: 1.3491, y: -56.75}
+  m_SizeDelta: {x: 539.7297, y: 113.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683003550
 MonoBehaviour:
@@ -3370,10 +3377,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 12345'
+  m_text: Score:1234
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e681b1e79872d2045afa8d076ab50aad, type: 2}
+  m_sharedMaterial: {fileID: -3996765441591485798, guid: e681b1e79872d2045afa8d076ab50aad,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3403,7 +3411,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 8
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -9399,6 +9407,7 @@ MonoBehaviour:
     _rollOffMode: 1
     _minDistance: 0
     _maxDistance: 2
+    _outPut: {fileID: 24300002, guid: 52cf9290204005845b7371ac50c6a89f, type: 2}
 --- !u!1 &1900042123
 GameObject:
   m_ObjectHideFlags: 0
