@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionMenu : MonoBehaviour
+public class SettingMenu : MonoBehaviour
 {
     public AudioMixer _audioMixer;
     public Image _toggleStatusImage;
@@ -48,6 +48,10 @@ public class OptionMenu : MonoBehaviour
 
     public void EnterDebug()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        PauseMenu._gameIsPaused = false;
         SceneManager.LoadScene("Debug Scene");
     }
 

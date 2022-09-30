@@ -55,5 +55,18 @@ public class PelletCounter : MonoBehaviour
         _powerPelletText.text = _currentPowerPelletNumber.ToString() + "/" + _maxPowerPelletNumber.ToString();
 
     }
+
+    public bool IsPelletAllOut()
+    {
+        if (_currentSmallPelletNumber == 0 && _currentPowerPelletNumber == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }
     

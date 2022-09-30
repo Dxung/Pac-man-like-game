@@ -34,6 +34,7 @@ public class GhostSirenEffect : MonoBehaviour
                 }
             }    
         }
+        Debug.Log(bestGhost);
 
         if (bestGhost != null)
         {

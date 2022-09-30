@@ -56,14 +56,14 @@ public class FirstPersonController : MonoBehaviour
         _playerCamera = GetComponentInChildren<Camera>();
         _myCharacterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         SpeedControl();
-        if (_canMove)
+        if (_canMove && !PauseMenu._gameIsPaused)
         {
             HandleMovementInput();
             HandleMouseLook();

@@ -12,6 +12,13 @@ public class PlayerColliderController : MonoBehaviour
     [SerializeField] ScoreCounter _scoreCounter;
     [SerializeField] private GameController _gameController;
 
+    [SerializeField] private bool _ghostTouched;
+
+    private void Start()
+    {
+        _ghostTouched = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ghosts"))
@@ -35,14 +42,17 @@ public class PlayerColliderController : MonoBehaviour
 
     public void ConsumeSmallPellet()
     {
+        
         _pelletCounter.ConsumeSmallPellet();
         _scoreCounter.AddPointFromSmallPellet();
+        _gameController.CheckIfgameWin();
     }
 
     public void ConsumePowerPellet()
     {
         _pelletCounter.ConsumePowerPellet();
         _scoreCounter.AddPointFromPowerPellet();
+        _gameController.CheckIfgameWin();
     }
 
     private void AddGhostKillingPoint()
@@ -52,7 +62,16 @@ public class PlayerColliderController : MonoBehaviour
     
     private void GhostKillPacmanUI()
     {
-        _gameController.CheckIfGameOver();
+        if (!_ghostTouched)
+        {
+            IsGhostTouched(true);
+            _gameController.CheckIfGameOver();
+        }
+    }
+
+    public void IsGhostTouched(bool isIt)
+    {
+        _ghostTouched = isIt;
     }
 
 }

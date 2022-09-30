@@ -8,6 +8,7 @@ using System;
 public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] private long _score = 0;
+    [SerializeField] private long _highScore = 0;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
     [SerializeField] private int _ghostKilled=0;
@@ -40,11 +41,20 @@ public class ScoreCounter : MonoBehaviour
 
     private void UpdatePoint()
     {
+        if(_score > _highScore)
+        {
+            _highScore = _score;
+        }
         _scoreText.text = "Score: " + _score.ToString();
     }
 
     private void ResetGhostKilledCounter()
     {
         _ghostKilled = 0;
+    }
+
+    public long GetHighScore()
+    {
+        return _highScore;
     }
 }

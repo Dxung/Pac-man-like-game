@@ -48,7 +48,6 @@ public class Blinky_Pinky_ClydeMovementController : MonoBehaviour
         SetupStartingSpeed();
 
 
-
     }
 
 
