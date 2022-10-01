@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-
 public class WinningBoard : MonoBehaviour
 {
     [SerializeField] public ScoreCounter _scoreCounter;
@@ -16,5 +15,14 @@ public class WinningBoard : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("StartingMenu");
+    }
+
+    public void ReloadScene()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        PauseMenu._gameIsPaused = false;
+        SceneManager.LoadScene("Debug Scene");
     }
 }

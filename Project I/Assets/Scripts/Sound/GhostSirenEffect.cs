@@ -34,8 +34,6 @@ public class GhostSirenEffect : MonoBehaviour
                 }
             }    
         }
-        Debug.Log(bestGhost);
-
         if (bestGhost != null)
         {
             transform.position = bestGhost.position;
@@ -69,5 +67,10 @@ public class GhostSirenEffect : MonoBehaviour
             this.gameObject.GetComponent<AudioManager>().Stop("ghost siren");
             _isSoundOn = false;
         }
+    }
+
+    public void IsSoundOn(bool isItOn)
+    {
+        _isSoundOn = isItOn;
     }
 }

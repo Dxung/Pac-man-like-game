@@ -10,9 +10,12 @@ public class SettingMenu : MonoBehaviour
 {
     public AudioMixer _audioMixer;
     public Image _toggleStatusImage;
+    public Image _ghostTraceToggle;
 
     public Resolution[] _resolutions;
     public TMP_Dropdown _resolutionDropDown;
+
+    public GameObject _debugLine;
 
     private void Start()
     {
@@ -70,9 +73,28 @@ public class SettingMenu : MonoBehaviour
             _toggleStatusImage.enabled = _isFullScreen;      
     }
 
+    public void SwitchGhostTraceImage(bool _isGhostTraceOn)
+    {
+        _ghostTraceToggle.enabled = _isGhostTraceOn;
+    }
+
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void TurnDebugLineOnOrOff(bool whichToTurn)
+    {
+        _debugLine.SetActive(whichToTurn);
+    }
+
+    public void ReloadScene()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        PauseMenu._gameIsPaused = false;
+        SceneManager.LoadScene("Debug Scene");
     }
 }

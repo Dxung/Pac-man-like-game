@@ -68,4 +68,9 @@ public class GhostFrightenedEffect : MonoBehaviour
             _isSoundOn = false;
         }
     }
+
+    public void IsSoundOn(bool isItOn)
+    {
+        _isSoundOn = isItOn;
+    }
 }

@@ -9,6 +9,7 @@ public class PlayerEffectController : MonoBehaviour
     [SerializeField] private bool _soundPlayed;
 
     [SerializeField] private AudioManager[] _soundToOffWhenPlayerDie;
+    
 
     private void Start()
     {
@@ -56,5 +57,6 @@ public class PlayerEffectController : MonoBehaviour
         {
             audio.StopAll();
         }
+     
     }
 }

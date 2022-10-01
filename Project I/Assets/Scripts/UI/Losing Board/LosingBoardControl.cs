@@ -19,6 +19,13 @@ public class LosingBoardControl : MonoBehaviour
         SceneManager.LoadScene("StartingMenu");
     }
 
-
+    public void ReloadScene()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        PauseMenu._gameIsPaused = false;
+        SceneManager.LoadScene("Debug Scene");
+    }
 
 }
